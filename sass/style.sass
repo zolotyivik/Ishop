@@ -1,0 +1,50 @@
+// Основной цвет заднего фона и меню
+$main-bg : #343a40 
+    
+// Высота Навигационной панели и соответственно отступ контента сверху
+$nav-height : 60px    
+// Отступ панели от контента
+$nav-offset : 5px 
+
+// Задний фон контента (хз почему нав)
+$nav-bg :  #ffffff
+
+
+
+// Радиус закругления контента
+$content-radius : 15px
+    
+    
+
+
+body 
+    background: $main-bg
+
+    
+    
+.main-shop
+    background: #fff
+    position: relative
+
+    
+    
+
+
+    .navbar
+        height: $nav-height
+        position: absolute
+        top: -$nav-height
+        width: 100%
+
+
+
+    .content-wrap
+        .content
+            transition: .2s
+            position: absolute
+            width: 100%
+            border-top-right-radius: $content-radius
+            border-top-left-radius: $content-radius
+            background: $nav-bg 
+            top: calc( #{$nav-height} - #{$nav-offset} )
+            min-height: calc( 100vh - #{$nav-height} + #{$nav-offset})
