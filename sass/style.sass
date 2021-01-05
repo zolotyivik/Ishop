@@ -1,19 +1,77 @@
 // Основной цвет заднего фона и меню
 $main-bg : #343a40 
+
+
+// Цвет кнопки
+
+$main-btn : #243d57 
+
+$main-btn-clicked : #245735 
+
+
+// Задний фон контента (хз почему нав)
+$nav-bg :  #e7eef0
+    
     
 // Высота Навигационной панели и соответственно отступ контента сверху
 $nav-height : 60px    
 // Отступ панели от контента
 $nav-offset : 5px 
 
-// Задний фон контента (хз почему нав)
-$nav-bg :  #ffffff
-
+a, a:hover, a:focus, a:visited 
+    color: inherit
+    text-decoration: none
 
 
 // Радиус закругления контента
 $content-radius : 15px
+
+
+.btn-zv
+    background: $main-btn
+    color: #fff 
+    transition: .2s
+    &:hover 
+        background: lighten($main-btn, 10)
+
+.over-wrap
+    overflow: scroll
+    height: calc( 100vh - #{$nav-height} + #{$nav-offset})
+
+
+.btn-clicked
+    background: $main-btn-clicked
+    color: #fff 
+    transition: .2s
+    &:hover 
+        background: lighten($main-btn-clicked, 10)
     
+
+// Анимация предзагрузки изображений на странице Home
+
+@keyframes loading-images
+    0%
+        background: darken(#fff, 20)
+    50%
+        background: darken(#fff, 10)
+    100%
+        background: darken(#fff, 20)
+
+
+
+// Анимация изображений на странице Home
+@keyframes loaded-images
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+        
+@keyframes loaded
+    0%
+    100%
+        background: #fff
+        
+
     
 .radius
     img
@@ -29,6 +87,59 @@ body
     position: relative
 
     
+
+    .cart-wrap
+        .cart-accept
+            p 
+                margin: 0
+            strong 
+                color: #612b2b
+            .count
+                padding: 10px 0 
+                font-size: 1.3em
+
+                
+        .deleter
+            right: .5em
+            z-index: 99
+            svg
+                height: 1.3em
+                width: 1.3em
+                color: #804545
+            &:hover
+                cursor: pointer
+        .sum-price-col 
+            h5
+                font-weight: 600
+        .price-col
+            h5 
+                font-size: 1em
+                color: #868686
+            svg 
+                height: 14px
+                width: 14px
+                margin-bottom: 5px
+        .name-col
+            h5 
+                font-size: 1em
+        .summary
+            background: #fff
+            padding: 10px 15px
+            border-radius: 5px
+            margin-bottom: 10px
+        .btn-zv 
+            border-radius: 4px 
+            font-size: 1.2em
+        .row-col
+            background: #fff
+            padding: 5px
+            border-radius: 5px
+            margin-bottom: 10px
+        img 
+            border-radius: 4px
+            max-width: 100px
+            width: 100%
+            max-height: 100px
     
 
 
@@ -37,12 +148,83 @@ body
         position: absolute
         top: -$nav-height
         width: 100%
+        display: flex
+        .navbar-brand
+            width: 90%
+            overflow: hidden
         .icon-wrap
             padding: 5px
             background: #fff
             border-radius: 4px
             color: $main-bg
             margin-left: 7px
+        .right-corner
+            position: absolute
+            right: 1rem
+            background: $main-bg 
+            padding-left: 5px
+        .count 
+            position: absolute
+            background: #2976e9
+            color: #fff
+            height: 15px
+            width: 15px
+            font-size: 11px
+            text-align: center
+            padding-bottom: 17px
+            border-radius: 3px
+            right: -9px
+            top: 9px
+
+    // .home
+    //     .home-wrap
+    //         overflow: scroll
+    //         height: calc( 100vh - #{$nav-height} + #{$nav-offset})
+
+
+    .product-wrap
+        transition: .2s
+        .additional-wrap
+            display: flex
+            align-items: center
+            padding: 10px
+            svg 
+                height: 2em
+                color: #525252
+                &.svg-more 
+                    // color: #35349e 
+        .price
+            h5 
+                // font-weight: 600
+        .name
+            h5  
+                font-size: 1.2em
+                // font-weight: 600
+        .img-col
+            .inner-col
+                height: 330px
+                margin-top: 10px
+                border-radius: $content-radius
+                margin-top: 15px
+                img
+                    height: 100%
+                    width: 100%
+                    object-fit: cover
+                    border-radius: $content-radius
+        .desc 
+            background: #fff
+            border-radius: 7px
+            padding: 10px
+            h4 
+                font-weight: 600
+                color: #502828
+            h5
+                font-size: 1em
+                font-weight: 300
+        .add-to-cart
+            .btn
+                font-size: 1.2em
+                padding: 13px
 
 
 
@@ -56,3 +238,39 @@ body
             background: $nav-bg 
             top: calc( #{$nav-height} - #{$nav-offset} )
             min-height: calc( 100vh - #{$nav-height} + #{$nav-offset})
+
+
+    .products-wrap
+        .wrap-col
+            transition: .2s
+            &:hover 
+                background: darken($nav-bg, 15)
+                border-radius: 4px
+        .img-wrap
+            height: 170px
+            border-radius: 6px
+            &.animated
+                animation: loading-images 2s infinite
+            &.loaded
+                animation: loaded .5s
+                animation-iteration-count: 1
+            img 
+                transition: .2s
+                object-fit: cover
+                width: 100%
+                height: 100%
+                border-radius: 6px
+                &.loaded
+                    animation: loaded-images .5s 
+                    animation-iteration-count: 1
+        h5.name
+            font-size: .9em
+            font-weight: 600
+        h5.cost
+            font-size: .8em
+            font-weight: 400
+        .btn, 
+            font-size: .8em
+            padding: 5px
+            margin-top: 10px
+            margin-right: 4px

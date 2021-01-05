@@ -1,0 +1,7 @@
+.modalw-inner{
+  padding: 10px;
+}
+
+.modalw-inner svg:hover {
+  cursor: pointer;
+}

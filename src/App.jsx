@@ -9,24 +9,40 @@ import Cart from "./Cart";
 import Home from "./Home";
 import Nav from "./Nav";
 import Content from "./Content";
+import FF from "./fetch";
 
 class App extends Component{
     constructor(props){
       super(props)
       this.state = {
           href : window.location.hash,
-          name :  "ZV-Shop"
+          name :  "ZV-Shop",
+          cart : 0
       }
 
       this.location = this.location.bind(this);
+      this.getCartCount = this.getCartCount.bind(this);
   }
 
 
   componentDidMount(){
-     
+     this.getCartCount();
     // window.onpopstate = function(event) {
     //   console.log("location: " + document.location.hash + ", state: " + JSON.stringify(event.state));
     // };
+  }
+
+  async getCartCount(){
+    let url = window.site + "/mapi/v2/ishop/basket/count.html";
+    let data = {user: window.user_id};
+    let req = await FF(url, data);
+    
+    if(req.ok){
+      // this.setState({
+      //   cart : req.data
+      // })
+      // window.cart = req.data;
+    } else console.error(req);
   }
 
 

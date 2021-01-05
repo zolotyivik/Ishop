@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Тут можно купить товары за ЗВ - деньги 😉"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -24,24 +24,23 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>ZV - Shop | Интернет магазин портала ZV-Life</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script>
       window.site = "https://zv-life.zolotoyvek.ua";
-      window.user_id = window.location.href.includes('localhost') ? '6833661107212472924' : ''//curUserID
+      window.position = '';
+      window.current_product = null;
+      window.balance = false;
+      window.home = "%PUBLIC_URL%";
+      window.cart = [];
+      window.products = [];
+      window.short_position = window.position == 'Керівник регіонального структурного підрозділу' ? 'rd' : window.position == 'Фахівець з розвитку та навчання персоналу' ? 'spec' : 'price';
+      // window.user_id = window.location.href.includes('localhost') ? '6870279625952143747' : ''//curUserID 
+      window.user_id = window.location.href.includes('localhost') ? '6833661107212472924' : '6833661107212472924'//curUserID //
     </script>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
   </body>
 </html>

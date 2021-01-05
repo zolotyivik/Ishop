@@ -26,25 +26,25 @@ class Content extends Component{
     }
 
 
-    componentDidUpdate(prev){
-        if (this.props != prev) {
-            console.log('update');
-            this.setState({
-                style  : {
-                    transform : "translateY(20%)",
-                    opacity : ".5"
-                }
-            })
-            setTimeout(() => {
-                this.setState({
-                    style  : {
-                        transform : "translateY(0)",
-                        opacity : "1"
-                    }
-                })
-            }, 200);
-        }
-    }
+    // componentDidUpdate(prev){
+    //     if (this.props != prev) {
+    //         console.log('update');
+    //         this.setState({
+    //             style  : {
+    //                 transform : "translateY(20%)",
+    //                 opacity : ".5"
+    //             }
+    //         })
+    //         setTimeout(() => {
+    //             this.setState({
+    //                 style  : {
+    //                     transform : "translateY(0)",
+    //                     opacity : "1"
+    //                 }
+    //             })
+    //         }, 200);
+    //     }
+    // }
 
 
     render(){
