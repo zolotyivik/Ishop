@@ -171,7 +171,7 @@ class Product extends Component {
     return (
       this.state.product && !this.state.redirect ? (
         <div className="product-wrap">
-          <Nav cart={this.state.cart} name={this.state.product.name} />
+          <Nav back={true} cart={this.state.cart} name={this.state.product.name} />
           <div style={this.state.aniStyle} className="container-fluid over-wrap">
             <div className="row d-flex justify-content-center no-gutters">
               <div className="col-lg-8 col-12">

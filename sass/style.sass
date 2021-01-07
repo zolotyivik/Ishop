@@ -71,6 +71,7 @@ $content-radius : 15px
     100%
         background: #fff
         
+$homedata-inner-width: 80%
 
     
 .radius
@@ -80,13 +81,38 @@ $content-radius : 15px
 body 
     background: $main-bg
 
-    
+*
+    outline: none !important
     
 .main-shop
     background: #fff
     position: relative
 
-    
+
+    .home-data
+        &-wrap 
+            position: fixed
+            top: -$nav-height + $nav-offset 
+            left: 0
+            background: #00000071
+            height: 100vh
+            width: 100vw
+            z-index: 100
+        &-inner 
+            position: absolute
+            background: #353535 
+            height: 70%
+            width: $homedata-inner-width/2
+            left: calc( (100% - #{$homedata-inner-width/2})/2 )
+            @media screen and ( max-width: 991px )
+                width: $homedata-inner-width
+                left: calc( (100% - #{$homedata-inner-width})/2 )
+                top: 15%
+            top: 10%
+            z-index: 101
+            opacity: 1
+            color: #fff 
+            border-radius: $content-radius
 
     .cart-wrap
         .cart-accept
@@ -274,3 +300,20 @@ body
             padding: 5px
             margin-top: 10px
             margin-right: 4px
+
+
+
+
+
+
+.get-auth
+    height: 100vh
+    #login 
+        background: $main-bg
+        color: #fff
+    button 
+        background-color: #fff !important
+        color: $main-bg !important
+    
+
+

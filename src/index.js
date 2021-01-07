@@ -6,10 +6,12 @@ import './style.min.css';
 import {
   HashRouter
 } from "react-router-dom";
+// import Auth from "./Auth";
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
+      
     <App />
     </HashRouter>
     

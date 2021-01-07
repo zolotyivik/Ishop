@@ -49,9 +49,9 @@ class Content extends Component{
 
     render(){
         console.log(this.props.location);
-        return <div style={this.state.style} className="content">
+        return this.props.load ? <div style={this.state.style} className="content">
             {this.props.children}
-        </div>
+        </div> : this.props.children
     }
 }
 

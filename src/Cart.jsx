@@ -261,7 +261,7 @@ class Cart extends Component {
     return (
       <div className="cart-wrap">
         {modal}
-        <Nav cart={this.state.goods} name="Корзина" />
+        <Nav back={true} cart={this.state.goods} name="Корзина" />
         <div style={this.state.aniStyle} className="container-fluid p-0 over-wrap">
           <div className="row d-flex justify-content-center no-gutters">
             <div className="col-lg-10 col-12">
@@ -314,5 +314,4 @@ class Cart extends Component {
     );
   }
 }
-
 export default Cart = withRouter(Cart);

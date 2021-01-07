@@ -2,34 +2,34 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import get from "./fetch";
 class Cart extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      aniStyle : {
-        transform : "translateY(0)",
-        transition : ".1s"
+      aniStyle: {
+        transform: "translateY(0)",
+        transition: ".1s"
       }
     }
   }
 
 
-  componentDidUpdate(prev){
+  componentDidUpdate(prev) {
     if (this.props.count != prev.count) {
       setTimeout(() => {
         this.setState({
-          aniStyle : {
-            transform : "translateY(-40%)",
-            transition : ".1s"
+          aniStyle: {
+            transform: "translateY(-40%)",
+            transition: ".1s"
           }
         })
       }, 100);
 
       setTimeout(() => {
         this.setState({
-          aniStyle : {
-            transform : "translateY(0)",
-            transition : ".2s"
+          aniStyle: {
+            transform: "translateY(0)",
+            transition: ".2s"
           }
         })
       }, 200);
@@ -60,10 +60,10 @@ class Cart extends Component {
 }
 
 class Money extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      balance : false
+      balance: false
     }
   }
 
@@ -77,42 +77,63 @@ class Money extends Component {
     if (req.ok) {
       window.balance = req.data.balance;
       this.setState({
-        balance : req.data.balance
+        balance: req.data.balance
       })
     } else {
       this.setState({
-        balance : 0
+        balance: 0
       })
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (window.balance === false) {
       this.getMoney();
     } else {
       this.setState({
-        balance : window.balance
+        balance: window.balance
       })
     }
-    
+
   }
+
+
+
+
 
   render() {
     let zv = <strong> ZV</strong>
     return <span>
-            {!this.state.balance ? 'loading' : <span>{this.state.balance} {zv}</span>}
-          </span>
-    
-    
-    
+      {!this.state.balance ? 'loading' : <span>{this.state.balance} {zv}</span>}
+    </span>
+
+
+
   }
 }
 
 class Nav extends Component {
+
+
+  home(props) {
+    if (props.home) {
+      
+    }
+  }
+
+
+
+
   render() {
+    let back = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z" />
+    </svg>
     return (
       <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="#/">
+        <a onClick={this.props.home && this.props.show} className="navbar-brand d-flex align-items-center" href="#/">
+          {this.props.back && <span className="back d-flex mr-2 mt-1">
+            {back}
+          </span>}
           {this.props.name}
         </a>
         <div className="right-corner d-flex align-items-center h-100 text-light">
@@ -122,7 +143,7 @@ class Nav extends Component {
           <Link to="/cart">
             <Cart count={this.props.cart.length} />
           </Link>
-          
+
         </div>
       </nav>
     );

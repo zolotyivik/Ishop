@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import get from "../fetch";
 import Add from "../Add";
 import { Link } from "react-router-dom";
+import "../lds.css";
 
 class Product extends Component {
   constructor(props) {
@@ -145,10 +146,12 @@ class Products extends Component {
 
   render() {
     let products = this.state.products.map(this.createProductsItem);
+    let loader = <div className="w-100 mt-5 d-flex justify-content-center"><div className="lds-heart"><div></div></div></div>
     // console.log(this.state.products);
     return (
       <div className="products-wrap">
         <div className="container-fluid">
+        {this.state.products.length > 0 ? '' : loader}
           <div style={this.state.aniStyle} className="row no-gutters mt-lg-3 mt-1 d-flex justify-content-center">
             <div className="col-lg-10 col-12">
               <div className="row px-3">{products}</div>
