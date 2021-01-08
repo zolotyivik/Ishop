@@ -37,6 +37,7 @@ $content-radius : 15px
 .over-wrap
     overflow: scroll
     height: calc( 100vh - #{$nav-height} + #{$nav-offset})
+    overflow-x: hidden
 
 
 .btn-clicked
@@ -235,9 +236,10 @@ body
                 img
                     height: 100%
                     width: 100%
-                    object-fit: cover
+                    background-color: #fff 
+                    object-fit: contain
                     border-radius: $content-radius
-        .desc 
+        .desc
             background: #fff
             border-radius: 7px
             padding: 10px
@@ -259,8 +261,9 @@ body
             transition: .2s
             position: absolute
             width: 100%
-            border-top-right-radius: $content-radius
-            border-top-left-radius: $content-radius
+            @media screen and ( max-width: 991px )
+                border-top-right-radius: $content-radius
+                border-top-left-radius: $content-radius
             background: $nav-bg 
             top: calc( #{$nav-height} - #{$nav-offset} )
             min-height: calc( 100vh - #{$nav-height} + #{$nav-offset})
@@ -269,7 +272,7 @@ body
     .products-wrap
         .wrap-col
             transition: .2s
-            &:hover 
+            &:hover
                 background: darken($nav-bg, 15)
                 border-radius: 4px
         .img-wrap
@@ -280,7 +283,7 @@ body
             &.loaded
                 animation: loaded .5s
                 animation-iteration-count: 1
-            img 
+            img
                 transition: .2s
                 object-fit: cover
                 width: 100%

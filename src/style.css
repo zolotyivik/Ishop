@@ -17,6 +17,7 @@ a, a:hover, a:focus, a:visited {
 .over-wrap {
   overflow: scroll;
   height: calc( 100vh - 60px + 5px);
+  overflow-x: hidden;
 }
 
 .btn-clicked {
@@ -287,8 +288,9 @@ body {
 .main-shop .product-wrap .img-col .inner-col img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  background-color: #fff;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 15px;
 }
 
@@ -318,11 +320,16 @@ body {
   transition: .2s;
   position: absolute;
   width: 100%;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
   background: #e7eef0;
   top: calc( 60px - 5px);
   min-height: calc( 100vh - 60px + 5px);
+}
+
+@media screen and (max-width: 991px) {
+  .main-shop .content-wrap .content {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
 }
 
 .main-shop .products-wrap .wrap-col {
