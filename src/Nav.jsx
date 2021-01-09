@@ -63,7 +63,9 @@ class Money extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      balance: false
+      balance: false,
+      loading : true,
+      error : false
     }
   }
 
@@ -77,11 +79,15 @@ class Money extends Component {
     if (req.ok) {
       window.balance = req.data.balance;
       this.setState({
-        balance: req.data.balance
+        balance: req.data.balance,
+        loading : false,
+        error : false
       })
     } else {
       this.setState({
-        balance: 0
+        balance: 0,
+        loading : false,
+        error : true
       })
     }
   }
@@ -91,7 +97,8 @@ class Money extends Component {
       this.getMoney();
     } else {
       this.setState({
-        balance: window.balance
+        balance: window.balance,
+        loading : false
       })
     }
 
@@ -104,7 +111,7 @@ class Money extends Component {
   render() {
     let zv = <strong> ZV</strong>
     return <span>
-      {!this.state.balance ? 'loading' : <span>{this.state.balance} {zv}</span>}
+      {this.state.loading ? 'loading' : !this.state.error ? <span>{this.state.balance} {zv}</span> : ''}
     </span>
 
 
@@ -140,9 +147,10 @@ class Nav extends Component {
           <span className="current-money">
             <Money />
           </span>
-          <Link to="/cart">
+          {this.props.cart ?  <Link to="/cart">
             <Cart count={this.props.cart.length} />
-          </Link>
+          </Link> : ''}
+         
 
         </div>
       </nav>

@@ -20,21 +20,25 @@ class Auth extends Component{
 
         this.login(this.props.match.params.id).then(
             (data) => {
-                console.info(data);
-                let storage = window.localStorage;
-                storage.setItem('logged', true);
-                storage.setItem('user_id', data.id);
-                storage.setItem('name', data.name);
-                storage.setItem('position', data.position);
-                
-                window.user_id = data.id;
-                window.position = data.position;
-                window.name = data.name;
-                window.short_position = window.position == 'Керівник регіонального структурного підрозділу' ? 'rd' : window.position == 'Фахівець з розвитку та навчання персоналу' ? 'spec' : 'price';
-          
-                this.setState({
-                    auth : true
-                })
+                if (data) {
+                    console.info(data);
+                    let storage = window.localStorage;
+                    storage.setItem('logged', true);
+                    storage.setItem('user_id', data.id);
+                    storage.setItem('name', data.name);
+                    storage.setItem('position', data.position);
+                    
+                    window.user_id = data.id;
+                    window.position = data.position;
+                    window.name = data.name;
+                    window.short_position = window.position == 'Керівник регіонального структурного підрозділу' ? 'rd' : window.position == 'Фахівець з розвитку та навчання персоналу' ? 'spec' : 'price';
+            
+                    this.setState({
+                        auth : true
+                    })  
+                } else {
+                    this.props.history.replace("/");
+                }
             
             
             
