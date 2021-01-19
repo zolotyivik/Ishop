@@ -42,7 +42,13 @@ class App extends Component{
       window.user_id = user_id;
       window.position = position;
       window.name = name;
-      window.short_position = window.position == 'Керівник регіонального структурного підрозділу' ? 'rd' : window.position == 'Фахівець з розвитку та навчання персоналу' ? 'spec' : 'price';
+      window.short_position =
+        window.position == "Керівник регіонального структурного підрозділу"
+          ? "rd"
+          : window.position == "Фахівець з розвитку та навчання персоналу" ||
+            window.position == "Менеджер з навчання та розвитку персоналу"
+          ? "spec"
+          : "price";
       return true;
     } else return false;
 

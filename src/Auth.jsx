@@ -30,7 +30,16 @@ class Auth extends Component{
                 window.user_id = data.id;
                 window.position = data.position;
                 window.name = data.name;
-                window.short_position = window.position == 'Керівник регіонального структурного підрозділу' ? 'rd' : window.position == 'Фахівець з розвитку та навчання персоналу' ? 'spec' : 'price';
+                window.short_position =
+                  window.position ==
+                  "Керівник регіонального структурного підрозділу"
+                    ? "rd"
+                    : window.position ==
+                        "Фахівець з розвитку та навчання персоналу" ||
+                      window.position ==
+                        "Менеджер з навчання та розвитку персоналу"
+                    ? "spec"
+                    : "price";
           
                 this.setState({
                     auth : true
