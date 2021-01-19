@@ -49,7 +49,8 @@ class App extends Component {
       window.short_position =
         window.position == "Керівник регіонального структурного підрозділу"
           ? "rd"
-          : window.position == "Фахівець з розвитку та навчання персоналу"
+          : window.position == "Фахівець з розвитку та навчання персоналу" ||
+            window.position == "Менеджер з навчання та розвитку персоналу"
           ? "spec"
           : "price";
       return true;

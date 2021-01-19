@@ -57,7 +57,7 @@ class GetAuth extends Component {
                         <div className="inner-col">
                             <div className="form-group d-flex align-items-center flex-column justify-content-center">
                                 <label htmlFor="login" className="text-light w-100 text-center">
-                                    Введите свои ИНН
+                                    Введите свой ИНН
                                 </label>
                                 <input
                                     id="login"
