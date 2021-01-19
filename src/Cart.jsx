@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
+import { Redirect, withRouter } from "react-router";
 import Nav from "./Nav";
 import FF from "./fetch";
 import { Link } from "react-router-dom";
@@ -258,7 +258,8 @@ class Cart extends Component {
     if (window.balance < sum) {
       tooMath = true
     }
-    return (
+    let logged = window.localStorage.getItem('logged')
+    return logged ? (
       <div className="cart-wrap">
         {modal}
         <Nav back={true} cart={this.state.goods} name="Корзина" />
@@ -311,7 +312,7 @@ class Cart extends Component {
           </div>
         </div>
       </div>
-    );
+    ) : <Redirect to="/auth"/>;
   }
 }
 export default Cart = withRouter(Cart);

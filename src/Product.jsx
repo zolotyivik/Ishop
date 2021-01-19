@@ -174,10 +174,10 @@ class Product extends Component {
           <Nav back={true} cart={this.state.cart} name={this.state.product.name} />
           <div style={this.state.aniStyle} className="container-fluid over-wrap">
             <div className="row d-flex justify-content-center no-gutters">
-              <div className="col-lg-8 col-12">
+              <div className="col-lg-6 col-12">
                 <div className="container-fluid">
                   <div className="row no-gutters d-flex justify-content-center">
-                    <div className="col-12 col-lg-4 img-col">
+                    <div className="col-12 col-lg-6 img-col">
                       <div className="inner-col shadow">
                         <img
                           src={

@@ -11,7 +11,6 @@ import {
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      
     <App />
     </HashRouter>
     
