@@ -23,43 +23,45 @@ class Product extends Component {
 
   render() {
     return (
-      <div className="col-lg-2 p-0 p-lg-3 col-6">
-        <div style={this.state.wrapStyle} className="inner-col wrap-col p-1">
-          <Link
-            to={{
-              pathname: "/products/" + this.props.data.id,
-              state: this.props.data,
-            }}
-          >
-            <div className={this.state.loaderClass}>
-              <img
-                onLoad={this.loader}
-                src={
-                  window.site +
-                  "/m19/rz.1.html?id=" +
-                  this.props.data.image +
-                  "&type=200"
-                }
-                alt=""
-                className={this.state.imgClass}
-              />
-            </div>
-          </Link>
+      <div className="col-xxl-2 col-xl-3 col-lg-3 p-0 p-lg-3 col-md-3 col-sm-4 col-6">
+        <div className="d-flex justify-content-center">
+          <div style={this.state.wrapStyle} className="inner-col wrap-col p-1">
+            <Link
+              to={{
+                pathname: "/products/" + this.props.data.id,
+                state: this.props.data,
+              }}
+            >
+              <div className={this.state.loaderClass}>
+                <img
+                  onLoad={this.loader}
+                  src={
+                    window.site +
+                    "/m19/rz.1.html?id=" +
+                    this.props.data.image +
+                    "&type=200"
+                  }
+                  alt=""
+                  className={this.state.imgClass}
+                />
+              </div>
+            </Link>
 
-          <div className="row no-gutters">
-            <div className="col-6">
-              <h5 className="name">{this.props.data.name}</h5>
-              <h5 className="cost">{this.props.data.cost} zv</h5>
-            </div>
-            <div className="col-6 d-flex justify-content-end align-items-start">
-              <Add
-                added={this.props.data.is_basket}
-                add={this.props.add}
-                product_id={this.props.data.id}
-                good={this.props.data}
-                clicked_text="в корзине"
-                text="добавить"
-              />
+            <div className="row no-gutters">
+              <div className="col-6">
+                <h5 className="name">{this.props.data.name}</h5>
+                <h5 className="cost">{this.props.data.cost} zv</h5>
+              </div>
+              <div className="col-6 d-flex justify-content-end align-items-start">
+                <Add
+                  added={this.props.data.is_basket}
+                  add={this.props.add}
+                  product_id={this.props.data.id}
+                  good={this.props.data}
+                  clicked_text="в корзине"
+                  text="добавить"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -153,7 +155,7 @@ class Products extends Component {
         <div className="container-fluid">
         {this.state.products.length > 0 ? '' : loader}
           <div style={this.state.aniStyle} className="row no-gutters mt-lg-3 mt-1 d-flex justify-content-center">
-            <div className="col-lg-10 col-12">
+            <div className="col-xxl-11 col-xl-10  col-12">
               <div className="row px-3">{products}</div>
             </div>
           </div>

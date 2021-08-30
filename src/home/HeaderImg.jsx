@@ -7,7 +7,7 @@ class HeaderImg extends Component{
 
 
     render(){
-        let headerImg = window.site + '/m19/rz.1.html?id=6826645076525986427&type=700';
+        let headerImg = window.site + '/m19/rz.1.html?id=7002131543365265887&type=700';
         return <div className="container-fluid my-2">
             <div className="row no-gutters w-100 m-0 p-0 d-flex justify-content-center">
         <div className="col-12">
