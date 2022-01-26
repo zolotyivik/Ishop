@@ -138,7 +138,7 @@ class Nav extends Component {
     return (
       <nav className="navbar ps-3 navbar-dark">
         <a onClick={this.props.home && this.props.show} className="navbar-brand d-flex align-items-center" href="#/">
-          {this.props.back && <span className="back d-flex mr-2 mt-1">
+          {this.props.back && <span className="back d-flex me-2 mt-1">
             {back}
           </span>}
           {this.props.name}

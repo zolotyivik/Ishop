@@ -27,7 +27,11 @@ class CartAccept extends Component{
     })
 
     let url = window.site + "/mapi/v2/ishop/order/create.html";
-    let data = {user:window.user_id};
+    let data = {
+      user:window.user_id, 
+      comment: this.props.region
+    };
+    console.log(data);
     let req = await FF(url, data);
 
     if (req.ok) {
@@ -166,6 +170,8 @@ class Cart extends Component {
     this.state = {
       goods: [],
       modal: false,
+      region: '',
+      selected: false,
       aniStyle : {
         opacity : "0",
         transition : ".2s",
@@ -227,7 +233,7 @@ class Cart extends Component {
   }
 
   render() {
-    console.log(this.state.goods);
+    // console.log(this.state.goods);
     let goods = this.state.goods.map(this.createGoods);
     let sum =
       this.state.goods.length > 0
@@ -247,12 +253,13 @@ class Cart extends Component {
         width="90%"
         borderRadius="10px"
       >
-        <CartAccept erase={this.erase} unset={(click) => {
+        <CartAccept region={this.state.region} erase={this.erase} unset={(click) => {
           this.setState({ modal: false });
         }} count={sum}/>
       </Modal>
     );
 
+    let is_office = window.is_office;
 
     let tooMath = false;
     if (window.balance < sum) {
@@ -284,8 +291,61 @@ class Cart extends Component {
                   </div>
 
                   <div className="row my-3 no-gutters d-flex align-items-center justify-content-center pb-3">
-                    <div className="col-12">
-                      <div className="inner-col d-flex align-items-center justify-content-center">
+                    <div className="col-md-3">
+                      <div className="inner-col d-flex flex-column align-items-center justify-content-center">
+                        {
+                          is_office && <div className="form-group w-100">
+                            <label htmlFor="region" className="mb-1">Выберите регион доставки:</label>
+                            <select onChange={(e) => {
+                              console.log(e.target);
+                              if(e.target.value !== 'Не выбрано'){
+                                this.setState({
+                                  selected : true,
+                                  region: e.target.value,
+                                })
+                              } else {
+                                this.setState({
+                                  selected : false,
+                                  region: e.target.value,
+                                })
+                              }
+                            }} name="region" className="form-control w-100 mb-3" id="">
+                              <option value="Не выбрано">Не выбрано</option>
+                              <option value="Волынский">Волынский</option>
+                              <option value="Волынский СВ">Волынский СВ</option>
+                              <option value="Днепр 1">Днепр 1</option>
+                              <option value="Днепр 2">Днепр 2</option>
+                              <option value="Днепр 3">Днепр 3</option>
+                              <option value="Закарпатье 1">Закарпатье 1</option>
+                              <option value="Закарпатье 2">Закарпатье 2</option>
+                              <option value="Запорожский">Запорожский</option>
+                              <option value="Киев 1">Киев 1</option>
+                              <option value="Киев 2">Киев 2</option>
+                              <option value="Криворожский">Криворожский</option>
+                              <option value="Кропивницкий">Кропивницкий</option>
+                              <option value="Львов СВ">Львов СВ</option>
+                              <option value="Львовский 1">Львовский 1</option>
+                              <option value="Львовский 2">Львовский 2</option>
+                              <option value="Львовский 3">Львовский 3</option>
+                              <option value="Мариуполь 1">Мариуполь 1</option>
+                              <option value="Мариуполь 2">Мариуполь 2</option>
+                              <option value="Николаевский">Николаевский</option>
+                              <option value="Одесса 1">Одесса 1</option>
+                              <option value="Одесса 2">Одесса 2</option>
+                              <option value="Одесса СВ">Одесса СВ</option>
+                              <option value="Прикарпатье">Прикарпатье</option>
+                              <option value="Северо-Западный">Северо-Западный</option>
+                              <option value="Сумской">Сумской</option>
+                              <option value="Харьков 1">Харьков 1</option>
+                              <option value="Харьков 2">Харьков 2</option>
+                              <option value="Харьков СВ">Харьков СВ</option>
+                              <option value="Херсон-Николаев СВ">Херсон-Николаев СВ</option>
+                              <option value="Херсонский">Херсонский</option>
+                              <option value="ЦентрЗапад">ЦентрЗапад</option>
+                              <option value="Юго-Запад">Юго-Запад</option>
+                            </select>
+                          </div>
+                        }
                         {tooMath ? (
                           <button disabled="disabled" className="btn btn-zv">
                             не хватает zv денег
@@ -295,7 +355,9 @@ class Cart extends Component {
                             this.setState({
                               modal : true
                             })
-                          }} className="btn btn-zv">
+                          }} 
+                          disabled={!this.state.selected && window.is_office}
+                          className="btn btn-zv w-100">
                             Оформить
                           </button>
                         )}

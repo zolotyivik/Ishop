@@ -41,11 +41,13 @@ class App extends Component {
     let logged = storage.getItem("logged");
     let user_id = storage.getItem("user_id");
     let name = storage.getItem("name");
+    let is_office = storage.getItem("is_office");
     let position = storage.getItem("position");
     if (logged && user_id && position) {
       window.user_id = user_id;
       window.position = position;
       window.name = name;
+      window.is_office = is_office === "true";
       window.short_position =
         window.position == "Керівник регіонального структурного підрозділу"
           ? "rd"

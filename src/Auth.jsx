@@ -21,11 +21,13 @@ class Auth extends Component {
         storage.setItem("logged", true);
         storage.setItem("user_id", data.id);
         storage.setItem("name", data.name);
+        storage.setItem("is_office", data.is_office);
         storage.setItem("position", data.position);
 
         window.user_id = data.id;
         window.position = data.position;
         window.name = data.name;
+        window.is_office = data.is_office;
         window.short_position =
           window.position == "Керівник регіонального структурного підрозділу"
             ? "rd"
