@@ -136,7 +136,7 @@ class Nav extends Component {
       <path fillRule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z" />
     </svg>
     return (
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar ps-3 navbar-dark">
         <a onClick={this.props.home && this.props.show} className="navbar-brand d-flex align-items-center" href="#/">
           {this.props.back && <span className="back d-flex mr-2 mt-1">
             {back}
