@@ -311,6 +311,7 @@ class Cart extends Component {
                               }
                             }} name="region" className="form-control w-100 mb-3" id="">
                               <option value="Не выбрано">Не выбрано</option>
+                              <option value="Центральный Офис(Запорожье)">Центральный Офис(Запорожье)</option>
                               <option value="Волынский">Волынский</option>
                               <option value="Волынский СВ">Волынский СВ</option>
                               <option value="Днепр 1">Днепр 1</option>

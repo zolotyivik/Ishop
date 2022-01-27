@@ -8,11 +8,12 @@ import Content from "./Content";
 import FF from "./fetch";
 import Auth from "./Auth";
 import GetAuth from "./GetAuth";
+import Order from "./Order";
 // import { MetaTags } from "react-meta-tags";
 // import metaImg from "./meta.jpg";
 
 const MyMetaContext = React.createContext("hello");
-const Order = lazy(() => import('./Order'));
+// const Order = lazy(() => import('./Order'));
 
 class Error404 extends Component{
   render(){
