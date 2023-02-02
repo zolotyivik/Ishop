@@ -58,8 +58,8 @@ class Product extends Component {
                   add={this.props.add}
                   product_id={this.props.data.id}
                   good={this.props.data}
-                  clicked_text="в корзине"
-                  text="добавить"
+                  clicked_text="в кошику"
+                  text="додати"
                 />
               </div>
             </div>

@@ -5,6 +5,7 @@ import FF from "./fetch";
 import { Link } from "react-router-dom";
 import Deleter from "./Deleter";
 import Modal from "./modalW";
+import axios from "axios";
 
 
 class CartAccept extends Component{
@@ -12,7 +13,8 @@ class CartAccept extends Component{
     super(props);
 
     this.state = {
-      btnText : "Подтвердить"
+      btnText : "Підтвердити",
+      creating: false,
     }
 
     this.create = this.create.bind(this);
@@ -23,8 +25,9 @@ class CartAccept extends Component{
 
   async create(){
     this.setState({
-      btnText : <span><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Минуту..</span>
-    })
+      creating: true,
+      btnText : <span><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Хвилину..</span>
+    });
 
     let url = window.site + "/mapi/v2/ishop/order/create.html";
     let data = {
@@ -50,15 +53,15 @@ class CartAccept extends Component{
     return <div className="container-fluid cart-accept">
       <div className="row mt-3">
         <div className="col-12">
-          <p>С Вашего <strong>основного</strong> счета будет списано: </p>
-          <p className="count"><strong >{this.props.count} ZV денег</strong></p>
-          <p>Нажмите кнопку <strong>"Подтвердить"</strong> для подтверждения заказа</p>
+          <p>З Вашого <strong>основного</strong> рахунку буде списано: </p>
+          <p className="count"><strong >{this.props.count} ZV грошей</strong></p>
+          <p>Натисніть кнопку <strong>"Підтвердити"</strong> для підтвердження замовлення</p>
 
           
         </div>
         <div className="col-12 d-flex justify-content-center">
         <div className="my-3">
-        <button onClick={this.create} className="btn btn-warning"><strong>{this.state.btnText}</strong></button>
+        <button disabled={this.state.creating} onClick={this.create} className="btn btn-warning"><strong>{this.state.btnText}</strong></button>
         </div>
         </div>
       </div>
@@ -111,7 +114,7 @@ class Good extends Deleter {
     );
     return (
       <div className="col-lg-9 col-12">
-        <div className="inner-col row-col">
+        <div className="inner-col row-col position-relative">
           <span onClick={this.delete} className="position-absolute deleter">
             {deleteSign}
           </span>
@@ -171,6 +174,7 @@ class Cart extends Component {
       goods: [],
       modal: false,
       region: '',
+      regions: [],
       selected: false,
       aniStyle : {
         opacity : "0",
@@ -187,6 +191,7 @@ class Cart extends Component {
 
   componentDidMount() {
     this.getCart();
+    this.getRegions();
     setTimeout(() => {
       this.setState({
         aniStyle : {
@@ -208,6 +213,14 @@ class Cart extends Component {
 
   createGoods(item, index) {
     return <Good update={this.update} key={index} data={item} />;
+  }
+
+  async getRegions(){
+    let url = window.site + '/mapi/v4/api.html?p=common/regions';
+    this.setState({
+      regions: (await axios.get(url)).data.data.map(item => item.name),
+    });
+
   }
 
   async getCart() {
@@ -259,7 +272,7 @@ class Cart extends Component {
       </Modal>
     );
 
-    let is_office = window.is_office;
+    let is_office = true;
 
     let tooMath = false;
     if (window.balance < sum) {
@@ -269,7 +282,7 @@ class Cart extends Component {
     return logged ? (
       <div className="cart-wrap">
         {modal}
-        <Nav back={true} cart={this.state.goods} name="Корзина" />
+        <Nav back={true} cart={this.state.goods} name="Кошик" />
         <div style={this.state.aniStyle} className="container-fluid p-0 over-wrap">
           <div className="row d-flex justify-content-center no-gutters">
             <div className="col-lg-10 col-12">
@@ -282,9 +295,9 @@ class Cart extends Component {
                   <div className="row my-2 d-flex justify-content-center no-gutters">
                     <div className="col-12 col-lg-9">
                       <div className="inner-col d-flex justify-content-between summary">
-                        <h5 className="d-block">Итого:</h5>
+                        <h5 className="d-block">Разом:</h5>
                         <h5 className="d-block">
-                          <strong>{sum} ZV</strong>
+                          <strong>{sum} ЗВ</strong>
                         </h5>
                       </div>
                     </div>
@@ -295,9 +308,9 @@ class Cart extends Component {
                       <div className="inner-col d-flex flex-column align-items-center justify-content-center">
                         {
                           is_office && <div className="form-group w-100">
-                            <label htmlFor="region" className="mb-1">Выберите регион доставки:</label>
+                            <label htmlFor="region" className="mb-1">Виберіть регіон доставки:</label>
                             <select onChange={(e) => {
-                              console.log(e.target);
+                              // console.log(e.target);
                               if(e.target.value !== 'Не выбрано'){
                                 this.setState({
                                   selected : true,
@@ -310,47 +323,18 @@ class Cart extends Component {
                                 })
                               }
                             }} name="region" className="form-control w-100 mb-3" id="">
-                              <option value="Не выбрано">Не выбрано</option>
-                              <option value="Центральный Офис(Запорожье)">Центральный Офис(Запорожье)</option>
-                              <option value="Волынский">Волынский</option>
-                              <option value="Восточный">Восточный</option>
-                              <option value="Волынский СВ">Волынский СВ</option>
-                              <option value="Днепр 1">Днепр 1</option>
-                              <option value="Днепр 2">Днепр 2</option>
-                              <option value="Днепр 3">Днепр 3</option>
-                              <option value="Закарпатье 1">Закарпатье 1</option>
-                              <option value="Закарпатье 2">Закарпатье 2</option>
-                              <option value="Запорожский">Запорожский</option>
-                              <option value="Киев 1">Киев 1</option>
-                              <option value="Киев 2">Киев 2</option>
-                              <option value="Криворожский">Криворожский</option>
-                              <option value="Кропивницкий">Кропивницкий</option>
-                              <option value="Львов СВ">Львов СВ</option>
-                              <option value="Львовский 1">Львовский 1</option>
-                              <option value="Львовский 2">Львовский 2</option>
-                              <option value="Львовский 3">Львовский 3</option>
-                              <option value="Мариуполь 1">Мариуполь 1</option>
-                              <option value="Мариуполь 2">Мариуполь 2</option>
-                              <option value="Николаевский">Николаевский</option>
-                              <option value="Одесса 1">Одесса 1</option>
-                              <option value="Одесса 2">Одесса 2</option>
-                              <option value="Одесса СВ">Одесса СВ</option>
-                              <option value="Прикарпатье">Прикарпатье</option>
-                              <option value="Северо-Западный">Северо-Западный</option>
-                              <option value="Сумской">Сумской</option>
-                              <option value="Харьков 1">Харьков 1</option>
-                              <option value="Харьков 2">Харьков 2</option>
-                              <option value="Харьков СВ">Харьков СВ</option>
-                              <option value="Херсон-Николаев СВ">Херсон-Николаев СВ</option>
-                              <option value="Херсонский">Херсонский</option>
-                              <option value="ЦентрЗапад">ЦентрЗапад</option>
-                              <option value="Юго-Запад">Юго-Запад</option>
+                              <option value="Не обрано">Не обрано</option>
+                              {
+                                this.state.regions.map(region => {
+                                  return <option key={region} value={region}>{region}</option>
+                                })
+                              }
                             </select>
                           </div>
                         }
                         {tooMath ? (
                           <button disabled="disabled" className="btn btn-zv">
-                            не хватает zv денег
+                            не вистачає zv грошей
                           </button>
                         ) : (
                           <button onClick={(c)=> {
@@ -360,7 +344,7 @@ class Cart extends Component {
                           }} 
                           disabled={!this.state.selected && window.is_office}
                           className="btn btn-zv w-100">
-                            Оформить
+                            Оформити
                           </button>
                         )}
                       </div>
@@ -369,7 +353,7 @@ class Cart extends Component {
                 </div>
               ) : (
                 <div className="w-100 text-center text-secondary mt-5">
-                  <h5>Вы пока ничего не выбрали..</h5>
+                  <h5>Ви поки що нічого не обрали..</h5>
                 </div>
               )}
             </div>

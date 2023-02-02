@@ -252,9 +252,9 @@ class Product extends Component {
                             }}
                             added={this.state.product.is_basket}
                             clicked_text={
-                              "В корзине: " + this.state.product.is_basket_count
+                              "В кошику: " + this.state.product.is_basket_count
                             }
-                            text="Добавить в корзину"
+                            text="Додати до кошику"
                           />
                           <Additional
                             change={(data) => {

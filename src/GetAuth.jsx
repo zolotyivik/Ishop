@@ -57,7 +57,7 @@ class GetAuth extends Component {
                         <div className="inner-col">
                             <div className="form-group d-flex align-items-center flex-column justify-content-center">
                                 <label htmlFor="login" className="text-light w-100 text-center">
-                                    Введите свой ИНН
+                                    Введіть свій ІПН
                                 </label>
                                 <input
                                     id="login"
@@ -72,11 +72,11 @@ class GetAuth extends Component {
                                             role="status"
                                             aria-hidden="true"
                                         ></span>
-                                            Вхожу
+                                            Входжу
                                     </button>
                                 ) : (
                                         <button onClick={this.getLogin} className="btn bg-light mt-2">
-                                            Войти
+                                            Увійти
                                         </button>
                                     )}
                             </div>

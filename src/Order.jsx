@@ -146,14 +146,14 @@ class Order extends Component{
              <div className="container-fluid cart-wrap my-4">
                  <div className="row no-gutters">
                      <div className="col-12 text-left mb-2">
-                         <h5><strong>Получатель: </strong>{name.reduce((prev,curr,) => (prev + ' ' + curr),'')}</h5>
+                         <h5><strong>Одержувач: </strong>{name.reduce((prev,curr,) => (prev + ' ' + curr),'')}</h5>
                      </div>
                  </div>
                  {prods}
                  <div className="row my-2 d-flex justify-content-center no-gutters">
                     <div className="col-12 col-lg-9">
                       <div className="inner-col d-flex justify-content-between summary">
-                        <h5 className="d-block">Итого:</h5>
+                        <h5 className="d-block">Разом:</h5>
                         <h5 className="d-block">
                           <strong>{sum} ZV</strong>
                         </h5>
@@ -167,7 +167,7 @@ class Order extends Component{
             <div className="row justify-content-center">
                 <div className="col-12">
                     <div className="text-center mt-5">
-                        <strong><h4 className="text-secondary">номер заказа не действителен</h4></strong>
+                        <strong><h4 className="text-secondary">номер замовлення недійсний</h4></strong>
                     </div>
                 </div>
             </div>
