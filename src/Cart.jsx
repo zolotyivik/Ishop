@@ -272,7 +272,7 @@ class Cart extends Component {
       </Modal>
     );
 
-    let is_office = true;
+    let is_office = window.is_office;
 
     let tooMath = false;
     if (window.balance < sum) {
