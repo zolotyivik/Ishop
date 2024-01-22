@@ -121,9 +121,9 @@ class App extends Component {
       <React.Fragment>
         <Suspense fallback={<div>Loading...</div>}>
           
-          <Route exact path="/auth/:id" component={Auth} />
+          {/* <Route exact path="/auth/:id" component={Auth} />
           
-          <Route exact path="/auth" component={GetAuth} />
+          <Route exact path="/auth" component={GetAuth} /> */}
           <div className="main-shop">
             <div className="content-wrap">
               <Content load={loaded} location={this.state.href}>
