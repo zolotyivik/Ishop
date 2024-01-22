@@ -76,7 +76,7 @@ class CartAccept extends Component{
     } else {
       console.error(req)
       if (req?.data?.message) {
-        const obj = this.parseString(req.message)
+        const obj = this.parseString(req.data.message)
         if (obj) {
           console.log("Максимальна кількість однотипних товарів: " + obj.max, "Ви вибрали: " + obj.count, " Виберіть меншу кількість цього товару");
         }
