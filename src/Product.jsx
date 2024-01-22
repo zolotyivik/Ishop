@@ -41,7 +41,7 @@ class Additional extends Component {
 
     switch (type) {
       case "more":
-        if (!name.includes('Сертификат') ) {
+        if (!name.includes('Сертифікат') ) {
           return more;
         }
         return false
@@ -201,7 +201,7 @@ class Product extends Component {
                     <div className="col-6 price d-flex justify-content-end">
                       <div className="inner-col">
                         <h5>
-                          <strong>{this.state.product.cost} ZV</strong>
+                          <strong>{this.state.product.cost} ЗВ</strong>
                         </h5>
                       </div>
                     </div>

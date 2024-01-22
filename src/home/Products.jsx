@@ -50,7 +50,7 @@ class Product extends Component {
             <div className="row no-gutters">
               <div className="col-6">
                 <h5 className="name">{this.props.data.name}</h5>
-                <h5 className="cost">{this.props.data.cost} zv</h5>
+                <h5 className="cost">{this.props.data.cost} зв</h5>
               </div>
               <div className="col-6 d-flex justify-content-end align-items-start">
                 <Add

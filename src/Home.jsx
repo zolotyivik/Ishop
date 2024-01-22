@@ -100,7 +100,7 @@ class Home extends Component {
             borderRadius : "50%"
         }}></span>;
         // let name = "ZV-Shop" + dot + window.name.split(' ')[0];
-        let name = <span> ZV-Shop {dot} <span style={{
+        let name = <span> ЗВ-Shop {dot} <span style={{
             color : "rgb(225, 129, 129)",
             fontSize : ".9em"
         }}>{window.name.split(' ')[0]}</span></span>;

@@ -109,7 +109,7 @@ class Money extends Component {
 
 
   render() {
-    let zv = <strong> ZV</strong>
+    let zv = <strong> ЗВ</strong>
     return <span>
       {this.state.loading ? 'loading' : !this.state.error ? <span>{this.state.balance} {zv}</span> : ''}
     </span>

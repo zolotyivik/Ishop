@@ -54,7 +54,7 @@ class CartAccept extends Component{
       <div className="row mt-3">
         <div className="col-12">
           <p>З Вашого <strong>основного</strong> рахунку буде списано: </p>
-          <p className="count"><strong >{this.props.count} ZV грошей</strong></p>
+          <p className="count"><strong >{this.props.count} ЗВ грошей</strong></p>
           <p>Натисніть кнопку <strong>"Підтвердити"</strong> для підтвердження замовлення</p>
 
           
@@ -334,7 +334,7 @@ class Cart extends Component {
                         }
                         {tooMath ? (
                           <button disabled="disabled" className="btn btn-zv">
-                            не вистачає zv грошей
+                            не вистачає зв грошей
                           </button>
                         ) : (
                           <button onClick={(c)=> {

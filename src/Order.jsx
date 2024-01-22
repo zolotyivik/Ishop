@@ -137,7 +137,7 @@ class Order extends Component{
         }}></span>;
         // let name = "ZV-Shop" + dot + window.name.split(' ')[0];
         let name = this.state.products.length > 0 ? this.state.products[0].user_name.split(' ') : []
-        let navName = <span> ZV-Shop {dot} <span style={{
+        let navName = <span> ЗВ-Shop {dot} <span style={{
             color : "rgb(225, 129, 129)",
             fontSize : ".9em"
         }}>{name[0]}</span></span>;
@@ -155,7 +155,7 @@ class Order extends Component{
                       <div className="inner-col d-flex justify-content-between summary">
                         <h5 className="d-block">Разом:</h5>
                         <h5 className="d-block">
-                          <strong>{sum} ZV</strong>
+                          <strong>{sum} ЗВ</strong>
                         </h5>
                       </div>
                     </div>
