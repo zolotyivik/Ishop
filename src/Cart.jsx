@@ -22,23 +22,33 @@ class CartAccept extends Component{
   }
 
   parseString(inputString) {
-    // Проверяем, содержится ли фраза "more than limit" в строке
-    if (inputString.includes("more than limit")) {
-      // Используем регулярное выражение для поиска числа после слова "max"
-      const match = inputString.match(/max: (\d+)/);
+    // Ищем индекс фразы "more than limit" в строке
+    const moreThanLimitIndex = inputString.indexOf("more than limit");
   
-      // Проверяем, было ли найдено совпадение
-      if (match) {
-        // Возвращаем найденное число
-        return parseInt(match[1], 10);
-      } else {
-        // Если совпадение не было найдено, возвращаем null или другое значение по умолчанию
-        return null;
+    // Проверяем, была ли найдена фраза
+    if (moreThanLimitIndex !== -1) {
+      // Ищем индекс после слова "max"
+      const maxIndex = inputString.indexOf("max:", moreThanLimitIndex);
+      if (maxIndex !== -1) {
+        // Извлекаем число после "max"
+        const maxMatch = inputString.match(/max: (\d+)/);
+        const max = maxMatch ? parseInt(maxMatch[1], 10) : null;
+  
+        // Ищем индекс после слова "count"
+        const countIndex = inputString.indexOf("count:", maxIndex);
+        if (countIndex !== -1) {
+          // Извлекаем число после "count"
+          const countMatch = inputString.match(/count: (\d+)/);
+          const count = countMatch ? parseInt(countMatch[1], 10) : null;
+  
+          // Возвращаем объект с результатами
+          return { max, count };
+        }
       }
-    } else {
-      // Если фраза "more than limit" не найдена, возвращаем null или другое значение по умолчанию
-      return null;
     }
+  
+    // Если фраза "more than limit" не найдена, или не удалось извлечь значения, возвращаем null
+    return null;
   }
   
   async create(){
@@ -66,9 +76,9 @@ class CartAccept extends Component{
     } else {
       console.error(req)
       if (req?.data?.message) {
-        const max = this.parseString(req.message)
-        if (max) {
-          console.log("Максимальна кількість однотипних товарів: " + max);
+        const obj = this.parseString(req.message)
+        if (obj) {
+          console.log("Максимальна кількість однотипних товарів: " + obj.max, "Ви вибрали: " + obj.count, " Виберіть меншу кількість цього товару");
         }
       }
     };
