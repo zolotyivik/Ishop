@@ -15,13 +15,14 @@ class CartAccept extends Component{
     this.state = {
       btnText : "Підтвердити",
       creating: false,
+      errorText : ''
     }
 
     this.create = this.create.bind(this);
 
   }
 
-  parseString(inputString) {
+  parseErrorString(inputString) {
     // Ищем индекс фразы "more than limit" в строке
     const moreThanLimitIndex = inputString.indexOf("more than limit");
   
@@ -41,8 +42,16 @@ class CartAccept extends Component{
           const countMatch = inputString.match(/count: (\d+)/);
           const count = countMatch ? parseInt(countMatch[1], 10) : null;
   
-          // Возвращаем объект с результатами
-          return { max, count };
+          // Ищем индекс после слова "name"
+          const nameIndex = inputString.indexOf("name:", countIndex);
+          if (nameIndex !== -1) {
+            // Извлекаем значение после "name"
+            const nameMatch = inputString.match(/name: (.+?)\r/);
+            const name = nameMatch ? nameMatch[1] : null;
+  
+            // Возвращаем объект с результатами
+            return { max, count, name };
+          }
         }
       }
     }
@@ -76,14 +85,24 @@ class CartAccept extends Component{
     } else {
       console.error(req)
       if (req?.data?.message) {
-        const obj = this.parseString(req.data.message)
+        const obj = this.parseErrorString(req.data.message)
         if (obj) {
-          console.log("Максимальна кількість однотипних товарів: " + obj.max, "Ви вибрали: " + obj.count, " Виберіть меншу кількість цього товару");
+          const text = `Залишилось лише ${obj.max} шт. товару "${obj.name}", Ви вибрали - ${obj.count} шт.  Виберіть меншу кількість цього товару`
+          this.setState({
+            errorText : text,
+          })
+
+          console.log(text);
         }
       }
     };
   }
 
+  componentWillUnmount(){
+    this.setState({
+      errorText : '',
+    })
+  }
 
   render(){
     return <div className="container-fluid cart-accept">
@@ -92,8 +111,7 @@ class CartAccept extends Component{
           <p>З Вашого <strong>основного</strong> рахунку буде списано: </p>
           <p className="count"><strong >{this.props.count} ЗВ грошей</strong></p>
           <p>Натисніть кнопку <strong>"Підтвердити"</strong> для підтвердження замовлення</p>
-
-          
+          {this.state.errorText && <p className='text-danger'>{this.state.errorText}</p>}
         </div>
         <div className="col-12 d-flex justify-content-center">
         <div className="my-3">
