@@ -21,8 +21,26 @@ class CartAccept extends Component{
 
   }
 
-
-
+  parseString(inputString) {
+    // Проверяем, содержится ли фраза "more than limit" в строке
+    if (inputString.includes("more than limit")) {
+      // Используем регулярное выражение для поиска числа после слова "max"
+      const match = inputString.match(/max: (\d+)/);
+  
+      // Проверяем, было ли найдено совпадение
+      if (match) {
+        // Возвращаем найденное число
+        return parseInt(match[1], 10);
+      } else {
+        // Если совпадение не было найдено, возвращаем null или другое значение по умолчанию
+        return null;
+      }
+    } else {
+      // Если фраза "more than limit" не найдена, возвращаем null или другое значение по умолчанию
+      return null;
+    }
+  }
+  
   async create(){
     this.setState({
       creating: true,
@@ -45,7 +63,15 @@ class CartAccept extends Component{
         this.props.unset()
         this.props.erase()
       }, 500);
-    } else console.error(req);
+    } else {
+      console.error(req)
+      if (req.message) {
+        const max = this.parseString(req.message)
+        if (max) {
+          console.log("Максимальна кількість однотипних товарів: " + max);
+        }
+      }
+    };
   }
 
 
