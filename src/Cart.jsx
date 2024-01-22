@@ -65,7 +65,7 @@ class CartAccept extends Component{
       }, 500);
     } else {
       console.error(req)
-      if (req.data.message) {
+      if (req?.data?.message) {
         const max = this.parseString(req.message)
         if (max) {
           console.log("Максимальна кількість однотипних товарів: " + max);
